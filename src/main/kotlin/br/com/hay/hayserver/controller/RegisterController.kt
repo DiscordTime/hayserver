@@ -14,8 +14,8 @@ class RegisterController {
     private lateinit var registerService: IRegisterService
 
     @PostMapping("/register")
-    fun login(@RequestBody user: User) {
-        registerService.registerUser(user)
+    fun login(@RequestBody user: User): Boolean {
+        return registerService.registerUser(user)
     }
 
 }

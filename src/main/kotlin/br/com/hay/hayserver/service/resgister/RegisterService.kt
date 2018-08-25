@@ -11,8 +11,13 @@ class RegisterService : IRegisterService {
     @Autowired
     private lateinit var userDao: UserDao
 
-    override fun registerUser(user: User) {
-        userDao.save(user)
+    override fun registerUser(user: User): Boolean {
+        try {
+            userDao.save(user)
+            return true;
+        } catch (e: Exception) {
+            return false;
+        }
     }
 
 }

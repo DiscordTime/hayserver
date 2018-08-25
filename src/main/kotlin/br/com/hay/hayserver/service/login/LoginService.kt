@@ -5,7 +5,6 @@ import br.com.hay.hayserver.model.User
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
-
 @Service
 class LoginService : ILoginService {
 
@@ -13,7 +12,11 @@ class LoginService : ILoginService {
     private lateinit var userDao: UserDao
 
     override fun authUser(email: String, password: String) : User {
-        return userDao.userAuth(email, password)
+        try {
+            return userDao.userAuth(email, password)
+        } catch(e: Exception) {
+            return User.empty()
+        }
     }
 
 }
